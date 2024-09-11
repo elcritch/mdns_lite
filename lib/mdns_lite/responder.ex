@@ -228,16 +228,18 @@ defmodule MdnsLite.Responder do
     Enum.each(qdlist, &run_query(&1, msg, source, state))
 
     # If the request had any entries, cache them
-    update_cache(msg, state)
+    update_cache(msg, source, state)
   end
 
-  defp process_dns(state, _source, dns_rec(header: dns_header(qr: true)) = msg) do
+  defp process_dns(state, source, dns_rec(header: dns_header(qr: true)) = msg) do
     # A response message or update so cache whatever it contains
-    update_cache(msg, state)
+    update_cache(msg, source, state)
   end
 
-  defp update_cache(dns_rec(anlist: anlist, arlist: arlist), state) do
+  defp update_cache(dns_rec(anlist: anlist, arlist: arlist), source, state) do
     now = System.monotonic_time(:second)
+    anlist = anlist |> Enum.map(fn rr -> dns_rr(rr, src: source) end)
+    arlist = arlist |> Enum.map(fn rr -> dns_rr(rr, src: source) end)
     new_cache = state.cache |> Cache.insert_many(now, anlist) |> Cache.insert_many(now, arlist)
     %{state | cache: new_cache}
   end

@@ -193,8 +193,9 @@
 	  %%
 	 tm,            %% creation time
          bm = [],       %% Bitmap storing domain character case information.
-         func = false   %% Was: Optional function calculating the data field.
+         func = false,  %% Was: Optional function calculating the data field.
          %%                Now: cache-flush Class flag from mDNS RFC 6762
+	 src = nil      %% extra field for storing source later
 	}).
 
 -define(DNS_UDP_PAYLOAD_SIZE, 1280).

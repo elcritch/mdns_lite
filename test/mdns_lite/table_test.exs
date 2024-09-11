@@ -317,7 +317,7 @@ defmodule MdnsLite.TableTest do
       ],
       additional: [
         {:dns_rr, ~c"nerves-21a5.local", :a, :in, 0, 120, {192, 168, 9, 57}, :undefined, [],
-         false}
+         false, nil}
       ]
     }
 
@@ -340,7 +340,7 @@ defmodule MdnsLite.TableTest do
       ],
       additional: [
         {:dns_rr, ~c"nerves-21a5.local", :a, :in, 0, 120, {192, 168, 9, 57}, :undefined, [],
-         false}
+         false, nil}
       ]
     }
 
@@ -378,7 +378,7 @@ defmodule MdnsLite.TableTest do
       ],
       additional: [
         {:dns_rr, ~c"nerves-21a5.local", :a, :in, 0, 120, {192, 168, 9, 57}, :undefined, [],
-         false}
+         false, nil}
       ]
     }
 
