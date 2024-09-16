@@ -107,8 +107,8 @@ defmodule MdnsLite.Cache do
   end
 
   defp insert_or_update(
-         [dns_rr(class: c, type: t, domain: d, data: x) | rest],
-         dns_rr(class: c, type: t, domain: d, data: x) = new_rr,
+         [dns_rr(class: c, type: t, domain: d, data: x, src: s) | rest],
+         dns_rr(class: c, type: t, domain: d, data: x, src: s) = new_rr,
          result
        ) do
     [new_rr | rest] ++ result
